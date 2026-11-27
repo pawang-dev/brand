@@ -1,0 +1,22 @@
+/* Mirrors colors/tokens.json. Update both together. */
+:root {
+  --pawang-biru-malam: #14213D;
+  --pawang-api-dupa: #FF8A3D;
+  --pawang-krem: #FFF6E9;
+  --pawang-hijau-sage: #A7C4A0;
+  --pawang-putih-tulang: #FAFAF7;
+}
+
+:root[data-theme="dark"] {
+  --pawang-latar: #0B0E14;
+  --pawang-kartu: #151A23;
+  --pawang-border: #1F2633;
+  --pawang-teks: #F8FAFC;
+  --pawang-redup: #94A3B8;
+  --pawang-kuning: #FACC15;
+  --pawang-hijau: #10B981;
+  --pawang-cyan: #06B6D4;
+  --pawang-ungu: #A855F7;
+  --pawang-oranye: #F97316;
+  --pawang-merah: #EF4444;
+}

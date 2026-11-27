@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -euo pipefail
+source "$(dirname "$0")/lib.sh"
+
+while read -r _ _ remote_ref remote_sha; do
+  # An all-zero remote SHA is the initial push that creates the branch.
+  [[ $remote_sha =~ ^0+$ ]] && continue
+  [[ $remote_ref =~ ^refs/heads/(main|master)$ ]] &&
+    fail "direct push to ${remote_ref#refs/heads/} is blocked. Open a pull request."
+done
+exit 0

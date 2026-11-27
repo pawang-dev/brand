@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -euo pipefail
+source "$(dirname "$0")/lib.sh"
+
+# The very first commit has no history to branch from; rebases run on a detached HEAD.
+git rev-parse --verify --quiet HEAD >/dev/null || exit 0
+branch=$(current_branch) || exit 0
+
+[[ $branch =~ $BRANCH_RE ]] ||
+  fail "branch '$branch' is not <type>/<issue>-<slug>. Run scripts/start-task.sh first."

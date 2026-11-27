@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+set -euo pipefail
+source "$(dirname "$0")/lib.sh"
+
+message_file=$1
+subject=$(grep -v '^#' "$message_file" | head -n 1 || true)
+
+[[ $subject =~ ^(Merge|Revert)\  ]] && exit 0
+[[ $subject =~ ^($TYPES)(\([a-z0-9-]+\))?!?:\ .+ ]] ||
+  fail "commit subject must look like 'feat(scope): summary'. Got: '$subject'"
+
+branch=$(current_branch) || exit 0
+if [[ $branch =~ $BRANCH_RE ]]; then
+  git interpret-trailers --in-place --if-exists addIfDifferent \
+    --trailer "Refs: #${BASH_REMATCH[2]}" "$message_file"
+fi
