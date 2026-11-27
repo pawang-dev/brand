@@ -37,4 +37,4 @@ git config core.hooksPath .githooks
 bash tests/flow.test.sh
 ```
 
-Repository ruleset: import `.github/ruleset.json` under Settings > Rules > Rulesets, after the first push to `main`.
+Repository ruleset: `.github/ruleset.json`, applied with `gh api repos/pawang-dev/brand/rulesets --method POST --input .github/ruleset.json`.
